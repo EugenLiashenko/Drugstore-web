@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Lab 2</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js
+    " />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="main.js"></script>
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</script>
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</script>
+  </head>
+  <body>
+<nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom">
+    <a class="navbar-brand ml-2 font-weight-bold" href="#"><span id="burgundy">The</span><span id="orange">DrugStore</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor" aria-controls="navbarColor" aria-expanded="false" aria-label="Toggle navigation"> 
+        <span class="navbar-toggler-icon"></span> 
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor">
+        <ul class="navbar-nav">
+            <li class="nav-item rounded bg-light search-nav-item"><input type="text" id="search" class="bg-light" placeholder="Введіть назву препарату..." oninput="search_by_navbar()"><span class="fa fa-search text-muted"></span></li>
+            <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-user-o"></span><span class="text">Login</span></a> </li>                
+            <li class="nav-item "><a class="nav-link" href="#"><span class="fa fa-shopping-cart"></span><span class="text">Cart</span></a> </li>
+        </ul>        
+    </div>    
+</nav>
+
+<!-- Бокове меню -->
+
+<section id="sidebar">
+    <p> Головна сторінка | <b>Усі ліки</b></p>
+    <div class="border-bottom pb-2 ml-2">
+        <h4 id="burgundy">Фільтри</h4>
+    </div>
+    <div class="py-2 border-bottom ml-3">
+        <h6 class="font-weight-bold">Категорії</h6>
+        <div id="orange"><span class="fa fa-minus"></span></div>
+        <form>
+            <div class="form-group">
+                <input class="tocheckall" type="checkbox" id="all" onclick="show_all()" checked>
+                <label for="all">Усі товари</label>
+            </div>
+            <div class="form-group">
+                <input class="tocheck" type="checkbox" id="nose" onclick="show_some_content('spray', 'nose')">
+                <label for="spray">Краплі для носа</label>
+            </div>
+            <div class="form-group">
+                <input class="tocheck" type="checkbox" id="oils" onclick="show_some_content('oil', 'oils')">
+                <label for="oil">Ефірні олії</label>
+            </div>
+            <div class="form-group">
+                <input class="tocheck" type="checkbox" id="insects" onclick="show_some_content('insect', 'insects')">
+                <label for="insest">Засоби від комах</label>
+            </div>
+            <div class="form-group">
+                <input class="tocheck" type="checkbox" id="antiseptics" onclick="show_some_content('antiseptic', 'antiseptics')">
+                <label for="antiseptic">Антисептичні засоби</label>
+            </div>  
+            <div class="form-group">
+                <input class="tocheck" type="checkbox" id="babies" onclick="show_some_content('baby', 'babies')">
+                <label for="baby">Підгузники</label>
+            </div>  
+            <div class="form-group">
+                <input class="tocheck" type="checkbox" id="babies-food" onclick="show_some_content('baby-food', 'babies-food')">
+                <label for="baby-food">Дитячі каші</label>
+            </div>                          
+        </form>
+    </div>
+</section>
+<!-- Продукти -->
+<section id="products">
+    <div class="container">
+        <div class="d-flex flex-row">
+            <div class="text-muted m-2" id="res">Усі результати</div>
+            <div class="ml-auto mr-lg-4">
+                <div id="sorting" class="border rounded p-1 m-1">
+                    <span class="text-muted">Сортувати</span>
+                    <select name="sort" id="sort">
+                        <option value="alphabet"><b>Алфавіт</b></option>
+                        <option value="price"><b>Ціна</b></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 spray element">
+                <div class="card">
+                    <img class="card-img-top" src="https://apteka1.net/uploads/catalog/2/21667_0_c7cc8fa37f8805403.jpg">
+                    <div class="card-body">
+                        <h5 class="item-name"><b>Краплі назальні "Мілі-носік"</b> </h5>
+                        <div class="d-flex flex-row my-2">
+                            <div class="text-muted">120 грн/шт</div>
+                            <div class="ml-auto">
+                                <button class="border rounded bg-white sign" onclick="increase_number('first')"><span class="fa fa-plus" id="orange"></span></button>
+                                <span class="px-sm-1" id="first">1</span>
+                                <button class="border rounded bg-white sign" onclick="decrease_number('first')"><span class="fa fa-minus" id="orange"></span></button>
+                            </div>
+                        </div> 
+                        <button class="btn w-100 rounded my-2">Add to cart</button>      
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 spray element">
+                <div class="card">
+                    <img class="card-img-top" src="https://vabos.com.ua/wp-content/uploads/naphthysine-300x300.jpg">
+                    <div class="card-body">
+                        <h5 class="item-name"><b>Краплі назльні "Нафтизін"</b> </h5>
+                        <div class="d-flex flex-row my-2">
+                            <div class="text-muted">150 грн/шт</div>
+                            <div class="ml-auto">
+                                <button class="border rounded bg-white sign" onclick="increase_number('second')"><span class="fa fa-plus" id="orange"></span></button>
+                                <span class="px-sm-1" id="second">1</span>
+                                <button class="border rounded bg-white sign" onclick="decrease_number('second')"><span class="fa fa-minus" id="orange"></span></button>
+                            </div>
+                        </div> 
+                        <button class="btn w-100 rounded my-2">Add to cart</button>      
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 oil element">
+                <div class="card">
+                    <img class="card-img-top" src="https://pwa-api.eva.ua/img/300/300/resize/6/9/694716_1_1644327153.jpg">
+                    <div class="card-body">
+                        <h5 class="item-name"><b>Ефірне масло з запахом "Весняне поле"</b> </h5>
+                        <div class="d-flex flex-row my-2">
+                            <div class="text-muted">80 грн/шт</div>
+                            <div class="ml-auto">
+                                <button class="border rounded bg-white sign" onclick="increase_number('third')"><span class="fa fa-plus" id="orange"></span></button>
+                                <span class="px-sm-1" id="third">1</span>
+                                <button class="border rounded bg-white sign" onclick="decrease_number('third')"><span class="fa fa-minus" id="orange"></span></button>
+                            </div>
+                        </div> 
+                        <button class="btn w-100 rounded my-2">Add to cart</button>      
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 oil element">
+                <div class="card">
+                    <img class="card-img-top" src="https://suveniry-kosmetika-krym.ru/wp-content/uploads/744-naturalnoe-efirnoe-maslo-kiparis-krymskaya-kosmetika-2018-300x300.jpg">
+                    <div class="card-body">
+                        <h5 class="item-name"><b>Ефірне масло з запахом "Кипарис"</b> </h5>
+                        <div class="d-flex flex-row my-2">
+                            <div class="text-muted">100 грн/шт</div>
+                            <div class="ml-auto">
+                                <button class="border rounded bg-white sign" onclick="increase_number('fourth')"><span class="fa fa-plus" id="orange"></span></button>
+                                <span class="px-sm-1" id="fourth">1</span>
+                                <button class="border rounded bg-white sign" onclick="decrease_number('fourth')"><span class="fa fa-minus" id="orange"></span></button>
+                            </div>
+                        </div> 
+                        <button class="btn w-100 rounded my-2">Add to cart</button>      
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 insect element">
+                <div class="card">
+                    <img class="card-img-top" src="https://omixcdn.com/img/catalog-300/off-extreme-aerozol-vid-klicshiv-slipakiv-komariv.png">
+                    <div class="card-body">
+                        <h5 class="item-name"><b>Засіб від комарів "OFF-extreme"</b></h5>
+                        <div class="d-flex flex-row my-2">
+                            <div class="text-muted">50 грн/шт</div>
+                            <div class="ml-auto">
+                                <button class="border rounded bg-white sign" onclick="increase_number('fifth')"><span class="fa fa-plus" id="orange"></span></button>
+                                <span class="px-sm-1" id="fifth">1</span>
+                                <button class="border rounded bg-white sign" onclick="decrease_number('fifth')"><span class="fa fa-minus" id="orange"></span></button>
+                            </div>
+                        </div> 
+                        <button class="btn w-100 rounded my-2">Add to cart</button>      
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 insect element">
+                <div class="card">
+                    <img class="card-img-top" src="https://content2.rozetka.com.ua/goods/images/big_tile/240684879.jpg">
+                    <div class="card-body">
+                        <h5 class="item-name"><b>Засіб від комарів та кліщів "Вихор"</b></h5>
+                        <div class="d-flex flex-row my-2">
+                            <div class="text-muted">30 грн/шт</div>
+                            <div class="ml-auto">
+                                <button class="border rounded bg-white sign" onclick="increase_number('sixth')"><span class="fa fa-plus" id="orange"></span></button>
+                                <span class="px-sm-1" id="sixth">1</span>
+                                <button class="border rounded bg-white sign" onclick="decrease_number('sixth')"><span class="fa fa-minus" id="orange"></span></button>
+                            </div>
+                        </div> 
+                        <button class="btn w-100 rounded my-2">Add to cart</button>      
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 antiseptic element">
+                <div class="card">
+                    <img class="card-img-top" src="https://liki24.com/image/cache/catalog/product/newupload//366443-antiseptik-dlya-ruk-300-ml-s-dozatorom-1-362x362.jpg?1635834798">
+                    <div class="card-body">
+                        <h5 class="item-name"><b>Засіб антисептичний "Vital+ professional"</b></h5>
+                        <div class="d-flex flex-row my-2">
+                            <div class="text-muted">15 грн/шт</div>
+                            <div class="ml-auto">
+                                <button class="border rounded bg-white sign" onclick="increase_number('seventh')"><span class="fa fa-plus" id="orange"></span></button>
+                                <span class="px-sm-1" id="seventh">1</span>
+                                <button class="border rounded bg-white sign" onclick="decrease_number('seventh')"><span class="fa fa-minus" id="orange"></span></button>
+                            </div>
+                        </div> 
+                        <button class="btn w-100 rounded my-2">Add to cart</button>      
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 antiseptic element">
+                <div class="card">
+                    <img class="card-img-top" src="https://funformum.ru/image/cache/catalog/ROXY/%D0%B3%D0%B8%D0%B3%D0%B8%D0%B5%D0%BD%D0%B0/%D0%B0%D0%BD%D1%82%D0%B8%D1%81%D0%B5%D0%BF%D1%82%D0%B8%D0%BA/sredstvo_antisepticheskoe_dlya_ruk_extra_f3e5125943-800x800.jpg">
+                    <div class="card-body">
+                        <h5 class="item-name"><b>Засіб антисептичний "Roxy-kids"</b></h5>
+                        <div class="d-flex flex-row my-2">
+                            <div class="text-muted">15 грн/шт</div>
+                            <div class="ml-auto">
+                                <button class="border rounded bg-white sign" onclick="increase_number('eighth')"><span class="fa fa-plus" id="orange"></span></button>
+                                <span class="px-sm-1" id="eighth">1</span>
+                                <button class="border rounded bg-white sign" onclick="decrease_number('eighth')"><span class="fa fa-minus" id="orange"></span></button>
+                            </div>
+                        </div> 
+                        <button class="btn w-100 rounded my-2">Add to cart</button>      
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 baby element">
+                <div class="card">
+                    <img class="card-img-top" src="https://careclub.hu/wp-content/uploads/2020/03/pampers-pants-bugyipelenka-3-as-meret-6-11-kg-204-db-havi-pelenkacsomag-ok-300x300.jpg">
+                    <div class="card-body">
+                        <h5 class="item-name"><b>Памперси дитячі "Pampers pants"</b></h5>
+                        <div class="d-flex flex-row my-2">
+                            <div class="text-muted">450 грн/уп</div>
+                            <div class="ml-auto">
+                                <button class="border rounded bg-white sign" onclick="increase_number('ninth')"><span class="fa fa-plus" id="orange"></span></button>
+                                <span class="px-sm-1" id="ninth">1</span>
+                                <button class="border rounded bg-white sign" onclick="decrease_number('ninth')"><span class="fa fa-minus" id="orange"></span></button>
+                            </div>
+                        </div> 
+                        <button class="btn w-100 rounded my-2">Add to cart</button>      
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 baby element">
+                <div class="card">
+                    <img class="card-img-top" src="https://s13emagst.akamaized.net/products/45395/45394814/images/res_087dc3f2f11b447037c34de0eeef0ec5.jpg?width=300&height=300&hash=59F8A4795E07EC50D477E776018DF843">
+                    <div class="card-body">
+                        <h5 class="item-name"><b>Памперси дитячі "Huggies elite soft"</b></h5>
+                        <div class="d-flex flex-row my-2">
+                            <div class="text-muted">600 грн/уп</div>
+                            <div class="ml-auto">
+                                <button class="border rounded bg-white sign" onclick="increase_number('tenth')"><span class="fa fa-plus" id="orange"></span></button>
+                                <span class="px-sm-1" id="tenth">1</span>
+                                <button class="border rounded bg-white sign" onclick="decrease_number('tenth')"><span class="fa fa-minus" id="orange"></span></button>
+                            </div>
+                        </div> 
+                        <button class="btn w-100 rounded my-2">Add to cart</button>      
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 baby-food element">
+                <div class="card">
+                    <img class="card-img-top" src="https://zakaz.idealmarket.net.ua/images/virtuemart/product/resized/3389560_320x320.jpg">
+                    <div class="card-body">
+                        <h5 class="item-name"><b>Суміш для дитячого харчування "Nutrilon"</b></h5>
+                        <div class="d-flex flex-row my-2">
+                            <div class="text-muted">200 грн/уп</div>
+                            <div class="ml-auto">
+                                <button class="border rounded bg-white sign" onclick="increase_number('eleventh')"><span class="fa fa-plus" id="orange"></span></button>
+                                <span class="px-sm-1" id="eleventh">1</span>
+                                <button class="border rounded bg-white sign" onclick="decrease_number('eleventh')"><span class="fa fa-minus" id="orange"></span></button>
+                            </div>
+                        </div> 
+                        <button class="btn w-100 rounded my-2">Add to cart</button>      
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 baby-food element">
+                <div class="card">
+                    <img class="card-img-top" src="https://terra.org.ua/image/cache/catalog/product/kashamango-300x300.jpg">
+                    <div class="card-body">
+                        <h5 class="item-name"><b>Дитяче пюре "Rudoles organic"</b></h5>
+                        <div class="d-flex flex-row my-2">
+                            <div class="text-muted">30 грн/уп</div>
+                            <div class="ml-auto">
+                                <button class="border rounded bg-white sign" onclick="increase_number('twelveth')"><span class="fa fa-plus" id="orange"></span></button>
+                                <span class="px-sm-1" id="twelveth">1</span>
+                                <button class="border rounded bg-white sign" onclick="decrease_number('twelveth')"><span class="fa fa-minus" id="orange"></span></button>
+                            </div>
+                        </div> 
+                        <button class="btn w-100 rounded my-2">Add to cart</button>      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</section>
+</body>
+</html>
